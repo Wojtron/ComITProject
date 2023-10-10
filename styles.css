@@ -1,0 +1,35 @@
+body{
+
+}
+
+#container{
+display: flex;
+flex-direction: column;
+}
+
+.scrappingSection{
+    flex:1;
+
+    border: 3px solid #000000;
+    height: calc(100% /3);
+    width: 100%;
+    background-color: blue;
+}
+
+.reportSection{
+    flex:1;
+
+    border: 3px solid #000000;
+    height: calc(100% /3);
+    width: 100%;
+    background-color: white;
+}
+
+.nextSection{
+    flex:1;
+
+    border: 3px solid #000000;
+    height: calc(100% /3);
+    width: 100%;
+    background-color: blue;
+}
