@@ -2,13 +2,15 @@ const axios = require('axios')
 const cheerio = require('cheerio')
 const express = require('express')
 const {response} = require("express");
-const PORT = 8000
-
 const KERNEL = 'https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=KERNEL'
+
 const MOSTAL = 'https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=MOSTALPLC'
 const CDPROJEKT = 'https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=CDPROJEKT'
 const JR = 'https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=JRHOLDING'
+
+
 const app = express()
+const PORT = 8000
 
 
 axios(KERNEL)
@@ -18,11 +20,14 @@ axios(KERNEL)
         const articles =[]
 
         $('.summaryTable',html).each(function (){
-           const title= $(this).text().trim()
-           const link = $(this).find('tr').attr("class")
-           articles.push({
-               title,
-               link
+            const title= $(this).text().replace(/'|\n/g, '').replace(/\s+/g, ' ').trim()
+            const link = $(this).find('tr').attr("class")
+            const companyName = title.split(" ").slice(0,1)
+            const companyData = title.split(" ").slice(4)
+
+            articles.push({
+                companyName,
+                companyData
            })
         })
         console.log(articles)
@@ -36,17 +41,19 @@ axios(MOSTAL)
         const articles =[]
 
         $('.summaryTable',html).each(function (){
-            const title= $(this).text().trim()
+            const title= $(this).text().replace(/'|\n/g, '').replace(/\s+/g, ' ').trim()
             const link = $(this).find('tr').attr("class")
+            const companyName = title.split(" ").slice(0,1)
+            const companyData = title.split(" ").slice(4)
+
             articles.push({
-                title,
-                link
+                companyName,
+                companyData
             })
         })
+
         console.log(articles)
     }).catch(err => console.log(err))
-
-
 axios(CDPROJEKT)
     .then(response=>{
         const html = response.data
@@ -54,15 +61,19 @@ axios(CDPROJEKT)
         const articles =[]
 
         $('.summaryTable',html).each(function (){
-            const title= $(this).text().trim()
+            const title= $(this).text().replace(/'|\n/g, '').replace(/\s+/g, ' ').trim()
             const link = $(this).find('tr').attr("class")
+            const companyName = title.split(" ").slice(0,1)
+            const companyData = title.split(" ").slice(4)
+
             articles.push({
-                title,
-                link
+                companyName,
+                companyData
             })
         })
         console.log(articles)
     }).catch(err => console.log(err))
+
 
 
 axios(JR)
@@ -72,11 +83,14 @@ axios(JR)
         const articles =[]
 
         $('.summaryTable',html).each(function (){
-            const title= $(this).text().trim()
+            const title= $(this).text().replace(/'|\n/g, '').replace(/\s+/g, ' ').trim()
             const link = $(this).find('tr').attr("class")
+            const companyName = title.split(" ").slice(0,1)
+            const companyData = title.split(" ").slice(8)
+
             articles.push({
-                title,
-                link
+                companyName,
+                companyData
             })
         })
         console.log(articles)
