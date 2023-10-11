@@ -1,35 +1,76 @@
 body{
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#container{
+.wrapper{
 display: flex;
 flex-direction: column;
+border-radius: 10px;
 }
+
+.QRSection.active{
+
+}
+
+.QRSection .qr-code {
+    display: flex;
+    padding: 33px 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000000;
+  /*  opacity: 0;
+    pointer-events: none;
+}
+
+.QRSection.active .qr-code{
+    opacity: 1;
+    pointer-events: auto;
+*/
+}
+
 
 .scrappingSection{
     flex:1;
 
-    border: 3px solid #000000;
-    height: calc(100% /3);
-    width: 100%;
-    background-color: blue;
-}
-
-.reportSection{
-    flex:1;
-
-    border: 3px solid #000000;
+    border-bottom: 3px solid #000000;
     height: calc(100% /3);
     width: 100%;
     background-color: white;
 }
 
-.nextSection{
+.reportSection{
     flex:1;
 
-    border: 3px solid #000000;
+    border-top: 3px solid #000000;
+    border-bottom: 3px solid #000000;
     height: calc(100% /3);
     width: 100%;
-    background-color: blue;
+    background-color: cornflowerblue;
+}
+
+.QRSection{
+    flex:1;
+
+    border-top: 3px solid #000000;
+    height: calc(100% /3);
+    width: 100%;
+    background-color: white;
+}
+
+.form input{
+    font-size:18px;
+    padding: 0 17px;
+    border: 1px solid #000000;
+}
+
+.form button{
+    color: cornflowerblue;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 17px;
+    backdrop-filter: #ff03;
+
 }
