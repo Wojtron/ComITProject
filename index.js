@@ -1,16 +1,27 @@
+
 const axios = require('axios')
 const cheerio = require('cheerio')
 const express = require('express')
 const {response} = require("express");
-const KERNEL = 'https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=KERNEL'
 
+
+
+const KERNEL = 'https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=KERNEL'
 const MOSTAL = 'https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=MOSTALPLC'
 const CDPROJEKT = 'https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=CDPROJEKT'
 const JR = 'https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=JRHOLDING'
 
 
+
 const app = express()
 const PORT = 8000
+
+
+
+var KLdata = "";
+var MLdata = "";
+var CTdata = "";
+var JRdata = "";
 
 
 axios(KERNEL)
@@ -25,6 +36,14 @@ axios(KERNEL)
             const companyName = title.split(" ").slice(0,1)
             const companyData = title.split(" ").slice(4)
 
+            KLdata = companyName +" "+ companyData;
+            KLdata = KLdata.toString();
+
+            console.log("aaaaa");
+            console.log(KLdata);
+           // document.getElementById("KL").innerHTML = KLdata;
+
+
             articles.push({
                 companyName,
                 companyData
@@ -32,6 +51,7 @@ axios(KERNEL)
         })
         console.log(articles)
     }).catch(err => console.log(err))
+
 
 
 axios(MOSTAL)
@@ -45,6 +65,8 @@ axios(MOSTAL)
             const link = $(this).find('tr').attr("class")
             const companyName = title.split(" ").slice(0,1)
             const companyData = title.split(" ").slice(4)
+
+
 
             articles.push({
                 companyName,
@@ -97,4 +119,7 @@ axios(JR)
     }).catch(err => console.log(err))
 
 
+
 app.listen(PORT, () =>console.log(`server running on PORT ${PORT}`))
+
+
