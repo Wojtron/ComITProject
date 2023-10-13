@@ -13,7 +13,8 @@ const JR = 'https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=JRHOLD
 
 
 
-const app = express()
+const app = express();
+const express = require('express');
 const PORT = 8000
 
 
@@ -39,9 +40,7 @@ axios(KERNEL)
             KLdata = companyName +" "+ companyData;
             KLdata = KLdata.toString();
 
-            console.log("aaaaa");
-            console.log(KLdata);
-           // document.getElementById("KL").innerHTML = KLdata;
+
 
 
             articles.push({
